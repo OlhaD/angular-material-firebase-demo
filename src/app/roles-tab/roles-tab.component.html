@@ -1,0 +1,40 @@
+<div class="container">
+    <section>
+        <div class="create-button-row">
+          <button mat-raised-button (click)="openCreateDialog()">Create</button>
+        </div>
+    </section>    
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Role </th>
+          <td mat-cell *matCellDef="let role"> {{role.name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="comment">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Comment </th>
+          <!-- <td mat-cell *matCellDef="let role"> {{role.comment}} </td> -->
+          <td mat-cell *matCellDef="let role; let i = index"> {{role.comment}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td class="flex" mat-cell *matCellDef="let role"> 
+                <section>
+                    <div class="example-button-row">
+                      <button mat-raised-button (click)="openEditDialog(role)">Edit</button>
+                    </div>
+                </section>
+                <section>
+                    <div class="example-button-row">
+                      <button mat-raised-button (click)="openDeleteConfirmationDialog(role)">Delete</button>
+                    </div>
+                </section>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>        
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>

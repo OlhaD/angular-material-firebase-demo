@@ -1,0 +1,34 @@
+.title h1{
+    margin: 3rem 10rem;
+}
+
+/* Action result snackbur */
+
+::ng-deep .mat-simple-snackbar{
+    justify-content: center;
+}
+
+::ng-deep .mat-snack-bar-container.success{
+    background-color: #d4edda;
+    color: #105f7b;
+}
+
+::ng-deep .mat-snack-bar-container.info{
+    background-color: #fff3cd;
+    color: #ccaa83;
+}
+
+::ng-deep .mat-snack-bar-container.error{
+    background-color: #f8d7da;
+    color: #823239;
+}
+
+/* Action result snackbur - end */
+
+/* Dialog */
+
+::ng-deep .mat-dialog-actions{
+    justify-content: flex-end;
+}
+
+/* Dialog - end */

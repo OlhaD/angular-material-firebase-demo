@@ -1,0 +1,14 @@
+.mat-form-field{
+    width: 100%;
+}
+
+.flex-titile{
+    justify-content: space-between;
+}
+
+.close-button{
+    float: right;
+    top:-24px;
+    right:-24px;
+}
+  

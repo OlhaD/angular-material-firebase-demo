@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+    max-width: 80px;
+}
+
+.container{
+    margin: 10px 5px;
+    border: 1px lightgrey solid;
+}
+
+.create-button {
+    display: table-cell;
+}
+
+.create-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.mat-simple-snackbar{
+    justify-content: center;
+    background-color: lightgreen;
+}
+
+.mat-simple-snackbar span{
+    color: #ccc;
+}
