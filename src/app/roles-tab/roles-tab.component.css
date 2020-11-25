@@ -28,3 +28,20 @@ table {
 .mat-simple-snackbar span{
     color: #ccc;
 }
+
+.float-child {
+    float: left;
+    padding-right: 5px;
+}  
+
+/* table */
+
+.comment{
+    word-wrap: break-word;
+}
+
+.actions{
+    width: 20%;
+}
+
+/* table - end */

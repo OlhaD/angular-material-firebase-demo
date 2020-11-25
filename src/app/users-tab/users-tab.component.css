@@ -36,3 +36,16 @@ table {
     display: flex;
     justify-content: center;
   }
+
+  .float-child {
+      float: left;
+      padding-right: 5px;
+  }  
+
+  /* table */
+  
+  .actions{
+    width: 20%;
+  }
+
+  /* table - end */

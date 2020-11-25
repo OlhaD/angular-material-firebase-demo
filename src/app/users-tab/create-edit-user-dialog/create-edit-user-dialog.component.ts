@@ -26,7 +26,6 @@ export class CreateEditUserDialogComponent implements OnInit {
     ) {
         dialogRef.disableClose = true;
         this.isInEditMode = data.action == EntityActionType.Edit;
-        debugger;
         this.user = {...data.entity};
     } 
 

@@ -119,7 +119,7 @@ export class UsersTabComponent implements OnInit, AfterViewInit {
 
   openDeleteConfirmationDialog(user: User): void{
     let title: string = "Delete";
-    let message: string = `Are you sure you want to delete a user '${user.lastName}' '${user.firstName}'?`;
+    let message: string = `Are you sure you want to delete a user ${user.lastName} ${user.firstName}?`;
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: title,

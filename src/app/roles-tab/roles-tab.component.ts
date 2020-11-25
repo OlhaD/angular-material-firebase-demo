@@ -54,7 +54,6 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
   openCreateDialog(): void{
     this.openCreateEditDialog(EntityActionType.Create, 
       (result) => {
-        debugger;
           this.roleService.create(result)
           .subscribe(() => {
             this.showAlert("Role was successfully created!", ActionResultType.Success);
@@ -107,7 +106,7 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
 
   openDeleteConfirmationDialog(role: Role): void{
     let title: string = "Delete";
-    let message: string = `Are you sure you want to delete role '${role.name}'?`;
+    let message: string = `Are you sure you want to delete role ${role.name}?`;
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: title,
