@@ -1,14 +1,15 @@
 <div class="container">
     <section>
         <div class="create-button-row">
-          <button mat-raised-button>Create</button>
+          <button mat-raised-button (click)="openCreateDialog()">Create</button>
         </div>
     </section>    
 
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         <ng-container matColumnDef="firstName">
           <th mat-header-cell mat-sort-header *matHeaderCellDef> First name </th>
-          <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+          <td mat-cell *matCellDef="let user">
+            {{user.firstName}} </td>
         </ng-container>
       
         <ng-container matColumnDef="lastName">
@@ -41,12 +42,12 @@
             <td class="flex" mat-cell *matCellDef="let user"> 
                 <section>
                     <div class="example-button-row">
-                      <button mat-raised-button>Edit</button>
+                      <button mat-raised-button (click)="openEditDialog(user)">Edit</button>
                     </div>
                 </section>
                 <section>
                     <div class="example-button-row">
-                      <button mat-raised-button>Delete</button>
+                      <button mat-raised-button (click)="openDeleteConfirmationDialog(user)">Delete</button>
                     </div>
                 </section>
             </td>

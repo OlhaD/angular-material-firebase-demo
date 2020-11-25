@@ -12,6 +12,7 @@ import { ActionResultService } from '../shared/components/action-result-snackbar
 import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { EntityActionType } from '../shared/enums/entityActionType';
 import { MatSort } from '@angular/material/sort';
+import { DialogData } from '../shared/interfaces/dialogData';
 
 @Component({
   selector: 'app-roles-tab',
@@ -21,7 +22,9 @@ import { MatSort } from '@angular/material/sort';
 export class RolesTabComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'comment', 'actions'];
   dataSource: MatTableDataSource<Role>;
-  roleForEdit: Role
+  roleForEdit: Role;
+
+  private dialogWidth: string = "40rem";
   
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -65,7 +68,7 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
     this.openCreateEditDialog(
       EntityActionType.Edit, 
       (result) => {
-          this.roleService.create(result)
+          this.roleService.update(result)
           .subscribe(() => {
             this.showAlert("Role was successfully updated!", ActionResultType.Success);
           }, () => {
@@ -74,9 +77,7 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
       },
       role
     );
-  }
-
-  
+  }  
 
   private openCreateEditDialog(entityActionType: EntityActionType, callback: Function, role?: Role): void{
     if(entityActionType == EntityActionType.Edit && !role){
@@ -84,12 +85,14 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    let data: DialogData<Role> = {
+      action: entityActionType,
+      entity: role
+    }
+
     const dialogRef = this.dialog.open(CreateEditRoleDialogComponent, {
-      //width: '250px',
-      data: {
-        action: entityActionType,
-        role: role
-      },
+      width: this.dialogWidth,
+      data: data,
       panelClass: 'dialog' 
     });
 
@@ -100,13 +103,11 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
       
       callback(result);
     });
-  }
-
-  
+  }  
 
   openDeleteConfirmationDialog(role: Role): void{
     let title: string = "Delete";
-    let message: string = `Are you sure you want to delete role '${role.name}'`;
+    let message: string = `Are you sure you want to delete role '${role.name}'?`;
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: title,

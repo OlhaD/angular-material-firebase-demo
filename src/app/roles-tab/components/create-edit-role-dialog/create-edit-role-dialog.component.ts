@@ -2,9 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EntityActionType } from 'src/app/shared/enums/entityActionType';
-// import { timeStamp } from 'console';
 import { Role } from 'src/app/shared/interfaces/role';
-import { DialogData } from './interfaces/dialogData';
+import { DialogData } from '../../../shared/interfaces/dialogData';
 
 @Component({
     selector: 'create-edit-role-dialog',
@@ -18,15 +17,15 @@ export class CreateEditRoleDialogComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<CreateEditRoleDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData        
+        @Inject(MAT_DIALOG_DATA) public data: DialogData<Role>      
     ) {
         dialogRef.disableClose = true;
         this.isInEditMode = data.action == EntityActionType.Edit;
-        this.role = {...data.role};
+        this.role = {...data.entity};
     } 
 
     ngOnInit(): void {
-        if(!this.role){
+        if(!this.role.id){
             this.resetRole();
         }
 

@@ -1,0 +1,27 @@
+.mat-form-field{
+    width: 100%;
+}
+
+.flex-titile{
+    justify-content: space-between;
+}
+
+.close-button{
+    float: right;
+    top:-24px;
+    right:-24px;
+}
+
+.mat-dialog-content{
+    overflow: hidden;
+}
+
+mat-form-field.dateOfBirth,
+.mat-form-field.points {
+    width: 40%;
+    display: block;
+}
+
+mat-error{
+    width: 100%;
+}

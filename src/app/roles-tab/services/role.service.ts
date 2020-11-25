@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { from } from 'rxjs';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Role } from '../../shared/interfaces/role';
-
-import { AngularFirestore, DocumentReference  } from 'angularfire2/firestore';
-
 
 @Injectable({providedIn: 'root'})
 export class RoleService{
@@ -24,6 +22,12 @@ export class RoleService{
         let roles = this.afs.collection<Role>('roles');
 
         return from(roles.add(role));
+    }
+
+    update(role: Role): Observable<any> {
+        let roles = this.afs.collection<Role>('roles');
+
+        return from(roles.doc(role.id).update(role));
     }
 
     delete(id: string) {

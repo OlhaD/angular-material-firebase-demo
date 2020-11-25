@@ -16,6 +16,7 @@ import { CreateEditRoleDialogComponent } from './roles-tab/components/create-edi
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActionResultSnackbarComponent } from './shared/components/action-result-snackbar/action-result-snackbar.component';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
+import { CreateEditUserDialogComponent } from './users-tab/create-edit-user-dialog/create-edit-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
     UsersTabComponent,
     RolesTabComponent,
     CreateEditRoleDialogComponent,
+    CreateEditUserDialogComponent,
     ActionResultSnackbarComponent,
     ConfirmationDialogComponent
   ],

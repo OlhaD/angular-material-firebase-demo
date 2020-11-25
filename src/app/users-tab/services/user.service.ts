@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import { User } from '../../shared/interfaces/user';
 
@@ -15,6 +15,26 @@ export class UserService{
     getAll(): Observable<any>{
         let users = this.afs.collection<User>('users');
 
-        return users.valueChanges();
+        return users.valueChanges({
+            idField: 'id'
+        });
+    }
+
+    create(user: User): Observable<any> {
+        let users = this.afs.collection<User>('users');
+
+        return from(users.add(user));
+    }
+
+    update(user: User): Observable<any> {
+        let roles = this.afs.collection<User>('users');
+
+        return from(roles.doc(user.id).update(user));
+    }
+
+    delete(id: string) {
+        let users = this.afs.collection<User>('users');
+
+        return from(users.doc(id).delete());
     }
 }
