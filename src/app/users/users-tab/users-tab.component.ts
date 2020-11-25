@@ -3,15 +3,15 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-import { User } from '../shared/interfaces/user';
+import { User } from '../../shared/interfaces/user';
 import { UserService } from './services/user.service';
 import { MatSort } from '@angular/material/sort';
-import { EntityActionType } from '../shared/enums/entityActionType';
-import { ActionResultType } from '../shared/enums/actionResultType';
+import { EntityActionType } from '../../shared/enums/entityActionType';
+import { ActionResultType } from '../../shared/enums/actionResultType';
 import { CreateEditUserDialogComponent } from './create-edit-user-dialog/create-edit-user-dialog.component';
-import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
-import { ActionResultService } from '../shared/components/action-result-snackbar/services/action-result.service';
-import { DialogData } from '../shared/interfaces/dialogData';
+import { ConfirmationDialogComponent } from '../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ActionResultService } from '../../shared/components/action-result-snackbar/services/action-result.service';
+import { DialogData } from '../../shared/interfaces/dialogData';
 
 @Component({
   selector: 'app-users-tab',

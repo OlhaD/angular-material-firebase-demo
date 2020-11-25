@@ -1,18 +1,17 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActionResultType } from '../shared/enums/actionResultType';
-import { MatSnackBarConfig } from '@angular/material/snack-bar';
-import { Role } from '../shared/interfaces/role';
+import { MatSort } from '@angular/material/sort';
+
+import { ActionResultType } from '../../shared/enums/actionResultType';
+import { Role } from '../../shared/interfaces/role';
 import { CreateEditRoleDialogComponent } from './components/create-edit-role-dialog/create-edit-role-dialog.component';
 import { RoleService } from './services/role.service';
-import { ActionResultService } from '../shared/components/action-result-snackbar/services/action-result.service';
-import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
-import { EntityActionType } from '../shared/enums/entityActionType';
-import { MatSort } from '@angular/material/sort';
-import { DialogData } from '../shared/interfaces/dialogData';
+import { ActionResultService } from '../../shared/components/action-result-snackbar/services/action-result.service';
+import { ConfirmationDialogComponent } from '../../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { EntityActionType } from '../../shared/enums/entityActionType';
+import { DialogData } from '../../shared/interfaces/dialogData';
 
 @Component({
   selector: 'app-roles-tab',
@@ -31,7 +30,6 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar,
     public roleService: RoleService,
     public actionResultSnackbarService: ActionResultService
     ) { }

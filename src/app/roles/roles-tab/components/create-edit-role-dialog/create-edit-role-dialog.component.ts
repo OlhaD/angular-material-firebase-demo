@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EntityActionType } from 'src/app/shared/enums/entityActionType';
 import { Role } from 'src/app/shared/interfaces/role';
-import { DialogData } from '../../../shared/interfaces/dialogData';
+import { DialogData } from '../../../../shared/interfaces/dialogData';
 
 @Component({
     selector: 'create-edit-role-dialog',

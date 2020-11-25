@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EntityActionType } from 'src/app/shared/enums/entityActionType';
 import { User } from 'src/app/shared/interfaces/user';
 import { BirthdayValidator } from 'src/app/shared/validators/dateValidator';
-import { DialogData } from '../../shared/interfaces/dialogData';
+import { DialogData } from '../../../shared/interfaces/dialogData';
 
 @Component({
     selector: 'create-edit-user-dialog',

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { from } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 
-import { Role } from '../../shared/interfaces/role';
+import { Role } from '../../../shared/interfaces/role';
 
 @Injectable({providedIn: 'root'})
 export class RoleService{

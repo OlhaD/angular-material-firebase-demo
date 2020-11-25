@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 
-import { User } from '../../shared/interfaces/user';
+import { User } from '../../../shared/interfaces/user';
 
 import { AngularFirestore  } from 'angularfire2/firestore';
 
