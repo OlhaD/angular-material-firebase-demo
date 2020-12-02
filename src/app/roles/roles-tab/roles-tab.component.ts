@@ -12,6 +12,7 @@ import { ActionResultService } from '../../shared/components/action-result-snack
 import { ConfirmationDialogComponent } from '../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { EntityActionType } from '../../shared/enums/entityActionType';
 import { DialogData } from '../../shared/interfaces/dialogData';
+import { UniqueRoleError } from './services/errors/uniqueRole.error';
 
 @Component({
   selector: 'app-roles-tab',
@@ -22,6 +23,7 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'comment', 'actions'];
   dataSource: MatTableDataSource<Role>;
   roleForEdit: Role;
+  isDataSourceEmpty: boolean;
 
   private dialogWidth: string = "40rem";
   
@@ -41,6 +43,7 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
     this.roleService.getAll().subscribe(
       (resp: Role[]) => {
         this.dataSource = new MatTableDataSource<Role>(resp);
+        this.resetIsDataSourceEmpty();
         this.dataSource.sort = this.sort;
         // make sorting case-insensitive
         this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();
@@ -54,9 +57,14 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
       (result) => {
           this.roleService.create(result)
           .subscribe(() => {
+            this.resetIsDataSourceEmpty();
             this.showAlert("Role was successfully created!", ActionResultType.Success);
-          }, () => {
-            this.showAlert("Error: Role was not created!", ActionResultType.Error);
+          }, (error) => {
+            if(error instanceof UniqueRoleError){
+              this.showAlert(`Error: ${error.message}`, ActionResultType.Error);
+            } else {
+              this.showAlert("Error: Role was not created!", ActionResultType.Error);
+            }
         });     
     });
   }
@@ -67,8 +75,11 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
       (result) => {
           this.roleService.update(result)
           .subscribe(() => {
+            debugger;
+            this.resetIsDataSourceEmpty();
             this.showAlert("Role was successfully updated!", ActionResultType.Success);
-          }, () => {
+          }, (error) => {
+            debugger;
             this.showAlert("Error: Role was not updated!", ActionResultType.Error);
         });     
       },
@@ -118,11 +129,16 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
       }
       
       this.roleService.delete(role.id).subscribe(() => {
+        this.resetIsDataSourceEmpty();
         this.showAlert("Role was successfully deleted!", ActionResultType.Success);
       }, () => {
         this.showAlert("Error: Role was not deleted!", ActionResultType.Error);
       });      
     })
+  }
+
+  private resetIsDataSourceEmpty(): void{
+    this.isDataSourceEmpty = this.dataSource.data.length == 0;
   }
 
   private showAlert(message: string, type: ActionResultType): void{

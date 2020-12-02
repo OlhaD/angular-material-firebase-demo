@@ -21,6 +21,7 @@ import { DialogData } from '../../shared/interfaces/dialogData';
 export class UsersTabComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'dateOfBirth', 'points', 'isActive', 'actions'];
   dataSource: MatTableDataSource<User>;
+  isDataSourceEmpty: boolean;
 
   private dialogWidth: string = "50rem";
 
@@ -138,6 +139,10 @@ export class UsersTabComponent implements OnInit, AfterViewInit {
         this.showAlert("Error: User was not deleted!", ActionResultType.Error);
       });      
     })
+  }
+
+  private resetIsDataSourceEmpty(): void{
+    this.isDataSourceEmpty = this.dataSource.data.length == 0;
   }
 
   private showAlert(message: string, type: ActionResultType): void{
