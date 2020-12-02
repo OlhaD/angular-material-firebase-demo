@@ -10,6 +10,7 @@ table {
 .container{
     margin: 10px 5px;
     border: 1px lightgrey solid;
+    padding: 5px;
 }
 
 .create-button {
@@ -53,3 +54,20 @@ table {
 .empty-data h3{
     font-weight: normal;
 }
+
+/* Spinner */
+
+.spinner-container{
+    width: 100px;
+      height: 100px;
+      
+      position: absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+        
+      margin: auto;
+  }
+  
+  /* Spinner - end */

@@ -22,6 +22,7 @@ export class UsersTabComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'dateOfBirth', 'points', 'isActive', 'actions'];
   dataSource: MatTableDataSource<User>;
   isDataSourceEmpty: boolean;
+  isPageLoaded: boolean = false;
 
   private dialogWidth: string = "50rem";
 
@@ -39,7 +40,8 @@ export class UsersTabComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.userService.getAll().subscribe(
+    this.userService.getAll()
+      .subscribe(
       (resp: User[]) => {
         let entities: User[] = resp.map(x => {
           return {
@@ -58,8 +60,12 @@ export class UsersTabComponent implements OnInit, AfterViewInit {
           }
           return value;
         };
-        this.dataSource.paginator = this.paginator; 
-      } 
+        this.dataSource.paginator = this.paginator;
+        this.isPageLoaded = true;
+      }, () => {
+        this.showAlert("Error: Users were not loaded", ActionResultType.Error);
+        this.isPageLoaded = true;
+      }
     )
   }
 

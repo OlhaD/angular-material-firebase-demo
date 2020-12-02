@@ -24,6 +24,7 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Role>;
   roleForEdit: Role;
   isDataSourceEmpty: boolean;
+  isPageLoaded: boolean = false;
 
   private dialogWidth: string = "40rem";
   
@@ -48,7 +49,11 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
         // make sorting case-insensitive
         this.dataSource.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();
         this.dataSource.paginator = this.paginator;
-      } 
+        this.isPageLoaded = true;
+      }, () => {
+        this.showAlert("Error: Roles were not loaded", ActionResultType.Error);
+        this.isPageLoaded = true;
+      }
     )
   }
 
@@ -75,11 +80,9 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
       (result) => {
           this.roleService.update(result)
           .subscribe(() => {
-            debugger;
             this.resetIsDataSourceEmpty();
             this.showAlert("Role was successfully updated!", ActionResultType.Success);
           }, (error) => {
-            debugger;
             this.showAlert("Error: Role was not updated!", ActionResultType.Error);
         });     
       },

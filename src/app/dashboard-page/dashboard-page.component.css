@@ -5,3 +5,7 @@
 .container{
     margin: 2rem 10rem 0 10rem;
 }
+
+::ng-deep .mat-tab-body-content{
+  min-height: 30vh;
+}

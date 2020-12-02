@@ -1,4 +1,8 @@
-<div class="container">
+<div *ngIf="!isPageLoaded" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="isPageLoaded" class="container">
     <section>
         <div class="create-button-row">
           <button mat-raised-button (click)="openCreateDialog()">Create</button>
