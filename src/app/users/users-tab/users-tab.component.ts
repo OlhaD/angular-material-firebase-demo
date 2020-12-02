@@ -119,8 +119,10 @@ export class UsersTabComponent implements OnInit, AfterViewInit {
       panelClass: 'dialog' 
     });
 
-    dialogRef.afterClosed().subscribe(result => {      
-      callback(result);
+    dialogRef.afterClosed().subscribe(result => {    
+      if(result){
+        callback(result);
+      }
     });
   }  
 

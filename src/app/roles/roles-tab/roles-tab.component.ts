@@ -108,7 +108,7 @@ export class RolesTabComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(!result.name){
+      if(!result || !result.name){
         return;
       }
       
