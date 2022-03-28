@@ -1,0 +1,11 @@
+.mat-tab-group {
+    margin-bottom: 48px;
+  }
+
+.container{
+    margin: 2vh 10vw 0 10vw;
+}
+
+::ng-deep .mat-tab-body-content{
+  min-height: 30vh;
+}

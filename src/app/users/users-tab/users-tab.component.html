@@ -1,0 +1,69 @@
+<div *ngIf="!isPageLoaded" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="isPageLoaded" class="container">
+    <section>
+        <div class="create-button-row">
+          <button mat-raised-button (click)="openCreateDialog()">Create</button>
+        </div>
+    </section>    
+
+    <div *ngIf="isDataSourceEmpty" class="empty-data">
+      <h3>No users found</h3>
+    </div>
+
+    <table *ngIf="!isDataSourceEmpty" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> First name </th>
+          <td mat-cell *matCellDef="let user">
+            {{user.firstName}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Last name </th>
+          <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="dateOfBirth">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Date of birth </th>
+          <td mat-cell *matCellDef="let user"> {{user.dateOfBirth | date}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="points">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Points </th>
+          <td mat-cell *matCellDef="let user"> {{user.points}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="isActive">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Active </th>
+            <td mat-cell *matCellDef="let user">
+                <section class="example-section">
+                    <mat-checkbox *ngIf="user.isActive" class="example-margin" [disabled]="true" [checked]="true"> Active</mat-checkbox>
+                    <mat-checkbox *ngIf="!user.isActive" class="example-margin" [disabled]="true" [checked]="false"> Disabled</mat-checkbox>
+                </section>    
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="actions"> Actions </th>
+            <td class="float-container actions" mat-cell *matCellDef="let user"> 
+              <div class="action-button-row float-child">                      
+                <button mat-raised-button (click)="openEditDialog(user)">
+                  <span class="material-icons">edit</span>
+                </button>
+              </div>
+              <div class="action-button-row float-child">
+                <button mat-raised-button (click)="openDeleteConfirmationDialog(user)">
+                  <span class="material-icons">clear</span>
+                </button>
+              </div>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>        
+      </table>
+
+      <mat-paginator *ngIf="!isDataSourceEmpty" [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>

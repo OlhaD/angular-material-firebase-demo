@@ -1,0 +1,33 @@
+<div class="flex flex-titile">
+    <h1 *ngIf="!isInEditMode" mat-dialog-title>Create a role</h1>
+    <h1 *ngIf="isInEditMode" mat-dialog-title>Edit a role</h1>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+        <mat-icon class="close-icon">close</mat-icon>
+    </button>
+</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <input matInput [(ngModel)]="role.name" formControlName="name" placeholder="Enter the role name">
+        <mat-error *ngIf="form.get('name').touched && form.get('name').invalid">
+            <p *ngIf="form.get('name').errors.required">Role name cannot be empty</p>
+            <p *ngIf="form.get('name').errors.maxLength">Role name is too long</p>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Comment</mat-label>
+        <textarea matInput [(ngModel)]="role.comment" formControlName="comment" placeholder="Enter a comment to the role"></textarea>
+        <mat-error *ngIf="form.get('comment').touched && form.get('comment').invalid">
+            <p *ngIf="form.get('comment').errors.maxlength">Role comment is too long</p>
+        </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submit()" cdkFocusInitial>Save</button>
+</div>

@@ -1,0 +1,62 @@
+<div class="flex flex-titile">
+    <h1 *ngIf="!isInEditMode" mat-dialog-title>Create a user</h1>
+    <h1 *ngIf="isInEditMode" mat-dialog-title>Edit a user</h1>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+        <mat-icon class="close-icon">close</mat-icon>
+    </button>
+</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>User</mat-label>
+        <input matInput [(ngModel)]="user.firstName" formControlName="firstName" placeholder="Enter the user first name">
+        <mat-error *ngIf="form.get('firstName').touched && form.get('firstName').invalid">
+            <p *ngIf="form.get('firstName').errors.required">User first name cannot be empty</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Last name</mat-label>
+          <input matInput [(ngModel)]="user.lastName" formControlName="lastName" placeholder="Enter the user last name">
+          <mat-error *ngIf="form.get('lastName').touched && form.get('lastName').invalid">
+              <p *ngIf="form.get('lastName').errors.required">User last name cannot be empty</p>
+          </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="dateOfBirth">
+        <mat-label>Date of birht</mat-label>
+        <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [(ngModel)]="user.dateOfBirth" formControlName="dateOfBirth" placeholder="Enter the user date of birth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('dateOfBirth').touched && form.get('dateOfBirth').invalid">
+            <p *ngIf="form.get('dateOfBirth').errors">User date of birth is empty or incorrect.</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="points">
+        <mat-label>Points</mat-label>
+        <input type="number" matInput min="-100" max="100" [(ngModel)]="user.points" formControlName="points" placeholder="Enter the user points">
+        
+        <mat-error *ngIf="form.get('points').touched && form.get('points').invalid">
+            <p *ngIf="form.get('points').errors.required">User points cannot be empty</p>
+            <p *ngIf="!form.get('points').errors.required && form.get('points').errors.min">User cannot have lass than -100 points.</p>
+            <p *ngIf="!form.get('points').errors.required && form.get('points').errors.max">User cannot have more than 100 points.</p>
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <mat-checkbox class="example-margin"
+                  [checked]="user.isActive"
+                  [(ngModel)]="user.isActive"
+                  formControlName="isActive">
+                  Active
+        </mat-checkbox>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submit()" cdkFocusInitial>Save</button>
+</div>

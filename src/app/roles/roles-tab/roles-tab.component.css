@@ -1,0 +1,73 @@
+table {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+    max-width: 80px;
+}
+
+.container{
+    margin: 10px 5px;
+    border: 1px lightgrey solid;
+    padding: 5px;
+}
+
+.create-button {
+    display: table-cell;
+}
+
+.create-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.mat-simple-snackbar{
+    justify-content: center;
+    background-color: lightgreen;
+}
+
+.mat-simple-snackbar span{
+    color: #ccc;
+}
+
+.float-child {
+    float: left;
+    padding-right: 5px;
+}  
+
+/* table */
+
+.comment{
+    word-wrap: break-word;
+}
+
+.actions{
+    width: 20%;
+}
+
+/* table - end */
+
+.empty-data{
+    padding: 0.5rem;
+}
+
+.empty-data h3{
+    font-weight: normal;
+}
+
+/* Spinner */
+
+.spinner-container{
+    width: 100px;
+      height: 100px;
+      
+      position: absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+        
+      margin: auto;
+  }
+  
+  /* Spinner - end */

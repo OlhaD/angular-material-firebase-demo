@@ -1,0 +1,46 @@
+<div *ngIf="!isPageLoaded" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="isPageLoaded" class="container">
+    <section>
+        <div class="create-button-row">
+          <button mat-raised-button (click)="openCreateDialog()">Create</button>
+        </div>
+    </section>    
+    <div *ngIf="isDataSourceEmpty" class="empty-data">
+      <h3>No roles found</h3>
+    </div>
+    <table *ngIf="!isDataSourceEmpty" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Role </th>
+          <td mat-cell *matCellDef="let role"> {{role.name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="comment">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Comment </th>
+          <td mat-cell *matCellDef="let role; let i = index" class="comment"> {{role.comment}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="actions" class="actions-column">
+            <th mat-header-cell *matHeaderCellDef class="actions"> Actions </th>
+            <td class="float-container actions" mat-cell *matCellDef="let role"> 
+              <div class="action-button-row float-child">
+                <button mat-raised-button (click)="openEditDialog(role)">
+                  <span class="material-icons">edit</span>
+                </button>
+              </div>
+              <div class="action-button-row float-child">
+                <button mat-raised-button (click)="openDeleteConfirmationDialog(role)">
+                  <span class="material-icons">clear</span>
+                </button>
+              </div>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>        
+      </table>
+
+      <mat-paginator *ngIf="!isDataSourceEmpty" [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>

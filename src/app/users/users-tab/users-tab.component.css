@@ -1,0 +1,73 @@
+table {
+    width: 100%;
+}
+
+.container{
+    margin: 10px 5px;
+    border: 1px lightgrey solid;
+    padding: 5px;
+}
+
+.flex {
+    display: flex;
+    max-width: 80px;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+  
+  .create-button-row {
+    display: table-cell;
+  }
+  
+  .create-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .float-child {
+      float: left;
+      padding-right: 5px;
+  }  
+
+  /* table */
+  
+  .actions{
+    width: 20%;
+  }
+
+  /* table - end */
+
+  .empty-data h3{
+    font-weight: normal;
+}
+
+/* Spinner */
+
+.spinner-container{
+  width: 100px;
+	height: 100px;
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+}
+
+/* Spinner - end */
